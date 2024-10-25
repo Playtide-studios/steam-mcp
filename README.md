@@ -7,3 +7,14 @@ Built for game developers and community managers who want Steam answers inside t
 ## Why
 
 Steam's public APIs are fragmented (store search, appdetails, user stats) and none of them keep player-count **history** — the single most useful signal for launch planning. steam-mcp stitches the surfaces together behind one tool set and pairs them with a companion backend that snapshots player counts every 30 minutes, so your agent can answer "how is the game actually doing" with real numbers.
+
+## Install
+
+```bash
+git clone https://github.com/Playtide-studios/steam-mcp.git
+cd steam-mcp
+npm install
+npm start
+```
+
+Requires Node 26+. Zero runtime dependencies — the server talks plain HTTP/JSON-RPC over stdio.
