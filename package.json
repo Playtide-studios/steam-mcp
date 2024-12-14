@@ -2,7 +2,6 @@
   "name": "steam-mcp",
   "version": "0.0.1",
   "description": "Steam data MCP server for game developers.",
-  "private": true,
   "type": "module",
   "license": "MIT",
   "scripts": {
@@ -11,5 +10,8 @@
   },
   "devDependencies": {
     "typescript": "^5.7.2"
+  },
+  "bin": {
+    "steam-mcp": "src/index.ts"
   }
 }
