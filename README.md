@@ -18,3 +18,15 @@ npm start
 ```
 
 Requires Node 26+. Zero runtime dependencies — the server talks plain HTTP/JSON-RPC over stdio.
+
+## Tools
+
+| Tool | What it does |
+|---|---|
+| `steam_search_apps` | Resolve a game name to appids via Steam store search |
+| `steam_get_app_overview` | One-call health check: players, reviews, price, release, genres, latest news |
+| `steam_get_store_details` | Full store listing: pricing per region, platforms, DLC count, metacritic |
+| `steam_get_app_reviews` | Review mining with recency/sentiment/keyword filters + representative quotes |
+| `steam_get_game_news` | News and patch-note digests, summary or full text |
+| `steam_get_player_trend` | Player-count history with min/max/avg, week-over-week change, and a plain-language insight line |
+| `steam_get_market_pulse` | Curated market digest for game developers: Steam trends, live-ops patterns, competitor notes |
