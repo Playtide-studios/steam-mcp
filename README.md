@@ -30,3 +30,26 @@ Requires Node 26+. Zero runtime dependencies — the server talks plain HTTP/JSO
 | `steam_get_game_news` | News and patch-note digests, summary or full text |
 | `steam_get_player_trend` | Player-count history with min/max/avg, week-over-week change, and a plain-language insight line |
 | `steam_get_market_pulse` | Curated market digest for game developers: Steam trends, live-ops patterns, competitor notes |
+
+## Client configuration
+
+stdio (Claude Desktop / Cursor / any MCP client):
+
+```json
+{
+  "mcpServers": {
+    "steam": {
+      "command": "node",
+      "args": ["/path/to/steam-mcp/src/index.ts"]
+    }
+  }
+}
+```
+
+Streamable HTTP:
+
+```bash
+npm run start:http   # serves MCP on http://localhost:8791/mcp
+```
+
+Ready-to-edit client configs live in [`examples/`](examples/).
