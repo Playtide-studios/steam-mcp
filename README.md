@@ -53,3 +53,14 @@ npm run start:http   # serves MCP on http://localhost:8791/mcp
 ```
 
 Ready-to-edit client configs live in [`examples/`](examples/).
+
+## Configuration
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `STEAM_MCP_BACKEND_URL` | `http://localhost:8787` | Companion backend base URL. Must be `https://` unless loopback |
+| `STEAM_MCP_BACKEND_KEY` | — | Backend API key (optional; the hosted beta is open) |
+| `STEAM_MCP_REMOTE_MANIFEST` | `0` | Opt in to fetching tool descriptions from the backend each boot |
+| `STEAM_MCP_TIMEOUT_MS` | `10000` | Per-request timeout to Steam or the backend |
+
+Everything else is zero-config: tool schemas are pinned to the packaged manifest (see `src/fallback-manifest.json`).
