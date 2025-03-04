@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project are documented here. Format loosely follows Keep a Changelog; versions follow semver.
 
+## [0.1.0] - March 4, 2025
+### Added
+- Companion backend client: player trends and market pulse.
+- `steam_get_player_trend`, `steam_get_market_pulse` tools.
+- Remaining tool surfaces: overview, store details, reviews, news.
+### Changed
+- BREAKING-ish: trend/pulse data now require the companion backend (`STEAM_MCP_BACKEND_URL`).
+
 ## [0.0.2] - January 6, 2025
 ### Added
 - First working tool: `steam_search_apps` (Steam store search, best-match first).
