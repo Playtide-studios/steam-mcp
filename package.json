@@ -20,5 +20,12 @@
     "url": "https://github.com/Playtide-studios/steam-mcp.git"
   },
   "homepage": "https://github.com/Playtide-studios/steam-mcp#readme",
-  "bugs": "https://github.com/Playtide-studios/steam-mcp/issues"
+  "bugs": "https://github.com/Playtide-studios/steam-mcp/issues",
+  "keywords": [
+    "steam",
+    "mcp",
+    "model-context-protocol",
+    "game-development",
+    "market-data"
+  ]
 }
