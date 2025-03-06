@@ -14,5 +14,11 @@
   },
   "bin": {
     "steam-mcp": "src/index.ts"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Playtide-studios/steam-mcp.git"
+  },
+  "homepage": "https://github.com/Playtide-studios/steam-mcp#readme",
+  "bugs": "https://github.com/Playtide-studios/steam-mcp/issues"
 }
