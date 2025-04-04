@@ -32,5 +32,5 @@ export const config = {
 
   requestTimeoutMs: Number(env.STEAM_MCP_TIMEOUT_MS ?? 10_000),
 
-  clientVersion: '0.1.0',
+  clientVersion: '0.1.1',
 } as const;

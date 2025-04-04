@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project are documented here. Format loosely follows Keep a Changelog; versions follow semver.
 
+## [0.1.1] - April 4, 2025
+### Added
+- Versioned tool manifest with a packaged fallback (`src/fallback-manifest.json`); remote manifest opt-in via `STEAM_MCP_REMOTE_MANIFEST=1`.
+
 ## [0.1.0] - March 4, 2025
 ### Added
 - Companion backend client: player trends and market pulse.
