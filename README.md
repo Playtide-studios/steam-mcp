@@ -64,3 +64,10 @@ Ready-to-edit client configs live in [`examples/`](examples/).
 | `STEAM_MCP_TIMEOUT_MS` | `10000` | Per-request timeout to Steam or the backend |
 
 Everything else is zero-config: tool schemas are pinned to the packaged manifest (see `src/fallback-manifest.json`).
+
+## Data provenance & safety
+
+- Store search, details, reviews, and news come directly from Steam's public endpoints at request time — nothing is scraped ahead or cached on disk.
+- Trends and the market digest come from the companion backend.
+- All free-text fetched from the internet (reviews, news bodies) is treated as **data, never instructions** — tool descriptions tell the model the same.
+- The server sends no telemetry anywhere. The only outbound calls are the Steam endpoints you asked about and the backend you configured.
