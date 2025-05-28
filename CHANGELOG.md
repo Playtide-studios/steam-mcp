@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project are documented here. Format loosely follows Keep a Changelog; versions follow semver.
 
+## [0.1.2] - May 28, 2025
+### Added
+- Streamable HTTP transport (`npm run start:http`, `/mcp` endpoint).
+- Tests for the HTTP layer and HTML text extraction.
+
 ## [0.1.1] - April 4, 2025
 ### Added
 - Versioned tool manifest with a packaged fallback (`src/fallback-manifest.json`); remote manifest opt-in via `STEAM_MCP_REMOTE_MANIFEST=1`.

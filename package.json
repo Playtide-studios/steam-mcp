@@ -1,6 +1,6 @@
 {
   "name": "steam-mcp",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Steam data MCP server for game developers.",
   "type": "module",
   "license": "MIT",
