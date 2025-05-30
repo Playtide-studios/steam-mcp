@@ -11,7 +11,7 @@
     "test": "node --test test/"
   },
   "devDependencies": {
-    "@types/node": "^22.5.0",
+    "@types/node": "^22.10.0",
     "typescript": "^5.8.0"
   },
   "bin": {
