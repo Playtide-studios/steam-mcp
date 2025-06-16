@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project are documented here. Format loosely follows Keep a Changelog; versions follow semver.
 
+## [0.1.3] - June 16, 2025
+### Changed
+- CI now runs typecheck + tests on a node matrix.
+- Error payloads carry a machine-readable `code` plus a remediation hint the model can act on.
+
 ## [0.1.2] - May 28, 2025
 ### Added
 - Streamable HTTP transport (`npm run start:http`, `/mcp` endpoint).
