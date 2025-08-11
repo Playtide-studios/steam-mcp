@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project are documented here. Format loosely follows Keep a Changelog; versions follow semver.
 
+## [0.1.4] - August 11, 2025
+### Added
+- `repository`/`homepage`/`keywords` package metadata, examples/ client configs.
+- SECURITY.md, CONTRIBUTING.md.
+
 ## [0.1.3] - June 16, 2025
 ### Changed
 - CI now runs typecheck + tests on a node matrix.
