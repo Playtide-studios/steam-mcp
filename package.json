@@ -29,5 +29,8 @@
     "model-context-protocol",
     "game-development",
     "market-data"
-  ]
+  ],
+  "engines": {
+    "node": ">=22"
+  }
 }
