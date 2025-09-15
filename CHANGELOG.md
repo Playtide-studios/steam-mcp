@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project are documented here. Format loosely follows Keep a Changelog; versions follow semver.
 
+## [0.1.5] - September 15, 2025
+### Changed
+- Node engine requirement raised to >=22 to match CI.
+- Dependency bumps (typescript, @types/node).
+
 ## [0.1.4] - August 11, 2025
 ### Added
 - `repository`/`homepage`/`keywords` package metadata, examples/ client configs.
