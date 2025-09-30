@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project are documented here. Format loosely follows Keep a Changelog; versions follow semver.
 
+## [0.1.6] - September 30, 2025
+### Changed
+- README: configuration table, data provenance section.
+- Lockfile committed.
+
 ## [0.1.5] - September 15, 2025
 ### Changed
 - Node engine requirement raised to >=22 to match CI.
