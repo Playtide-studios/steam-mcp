@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project are documented here. Format loosely follows Keep a Changelog; versions follow semver.
 
+## [0.1.7] - October 20, 2025
+### Fixed
+- Timeout handling on backend fetches (AbortSignal everywhere).
+- HTML entity decoding edge cases in store-page text extraction.
+
 ## [0.1.6] - September 30, 2025
 ### Changed
 - README: configuration table, data provenance section.
