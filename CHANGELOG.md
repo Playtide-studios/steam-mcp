@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project are documented here. Format loosely follows Keep a Changelog; versions follow semver.
 
+## [0.1.8] - November 28, 2025
+### Added
+- Client version header on backend calls, so the backend can serve schema-compatible responses per install.
+
 ## [0.1.7] - October 20, 2025
 ### Fixed
 - Timeout handling on backend fetches (AbortSignal everywhere).
