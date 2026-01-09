@@ -31,6 +31,6 @@
     "market-data"
   ],
   "engines": {
-    "node": ">=22"
+    "node": ">=26"
   }
 }
