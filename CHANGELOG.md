@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project are documented here. Format loosely follows Keep a Changelog; versions follow semver.
 
+## [0.1.9] - February 3, 2026
+### Changed
+- Node engine requirement raised to >=26.
+- Dependency bumps (typescript 5.9, @types/node 24).
+### Fixed
+- Review keyword filter regex against short review bodies.
+
 ## [0.1.8] - November 28, 2025
 ### Added
 - Client version header on backend calls, so the backend can serve schema-compatible responses per install.
