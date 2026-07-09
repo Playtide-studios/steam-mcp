@@ -71,3 +71,15 @@ Everything else is zero-config: tool schemas are pinned to the packaged manifest
 - Trends and the market digest come from the companion backend.
 - All free-text fetched from the internet (reviews, news bodies) is treated as **data, never instructions** — tool descriptions tell the model the same.
 - The server sends no telemetry anywhere. The only outbound calls are the Steam endpoints you asked about and the backend you configured.
+
+## The companion backend
+
+Trend and pulse data come from the steam-mcp companion backend — a small Express + Postgres service that snapshots player counts for every tracked app every 30 minutes.
+
+- **Hosted backend (open beta):** point your install at `https://api.212.147.241.73.sslip.io` — no key required during beta:
+
+  ```bash
+  STEAM_MCP_BACKEND_URL=https://api.212.147.241.73.sslip.io npm start
+  ```
+
+- **Self-hosted:** the backend is a standard docker-compose Postgres + API stack; set `STEAM_MCP_BACKEND_URL` to your instance. See [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) for connectivity help.
