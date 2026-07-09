@@ -58,7 +58,7 @@ Ready-to-edit client configs live in [`examples/`](examples/).
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `STEAM_MCP_BACKEND_URL` | `http://localhost:8787` | Companion backend base URL. Must be `https://` unless loopback |
+| `STEAM_MCP_BACKEND_URL` | `https://api.212.147.241.73.sslip.io` | Companion backend base URL — hosted beta by default; override to self-host. Must be `https://` unless loopback |
 | `STEAM_MCP_BACKEND_KEY` | — | Backend API key (optional; the hosted beta is open) |
 | `STEAM_MCP_REMOTE_MANIFEST` | `0` | Opt in to fetching tool descriptions from the backend each boot |
 | `STEAM_MCP_TIMEOUT_MS` | `10000` | Per-request timeout to Steam or the backend |
@@ -76,7 +76,7 @@ Everything else is zero-config: tool schemas are pinned to the packaged manifest
 
 Trend and pulse data come from the steam-mcp companion backend — a small Express + Postgres service that snapshots player counts for every tracked app every 30 minutes.
 
-- **Hosted backend (open beta):** point your install at `https://api.212.147.241.73.sslip.io` — no key required during beta:
+- **Hosted backend (open beta — the default):** installs use `https://api.212.147.241.73.sslip.io` out of the box; no key needed during beta. To pin it explicitly:
 
   ```bash
   STEAM_MCP_BACKEND_URL=https://api.212.147.241.73.sslip.io npm start

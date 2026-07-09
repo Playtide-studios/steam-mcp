@@ -1,4 +1,4 @@
-/** Zero-dependency env config. Everything has a working localhost default. */
+/** Zero-dependency env config. The backend defaults to the Playtide hosted beta. */
 const env = process.env;
 
 const LOOPBACK_HOSTS = new Set(['localhost', '127.0.0.1', '::1', '[::1]']);
@@ -24,10 +24,10 @@ function validateBackendUrl(raw: string): string {
 }
 
 export const config = {
-  /** Content backend base URL. Default is the local docker-compose instance. */
-  backendUrl: validateBackendUrl((env.STEAM_MCP_BACKEND_URL ?? 'http://localhost:8787').replace(/\/+$/, '')),
+  /** Content backend base URL. Defaults to the Playtide hosted beta; override to self-host. */
+  backendUrl: validateBackendUrl((env.STEAM_MCP_BACKEND_URL ?? 'https://api.212.147.241.73.sslip.io').replace(/\/+$/, '')),
 
-  /** Optional backend API key (free-tier). Unused by the default local backend. */
+  /** Optional backend API key for the hosted service. Not needed during the open beta. */
   backendKey: env.STEAM_MCP_BACKEND_KEY || undefined,
 
   requestTimeoutMs: Number(env.STEAM_MCP_TIMEOUT_MS ?? 10_000),
