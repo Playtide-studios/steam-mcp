@@ -83,3 +83,11 @@ Trend and pulse data come from the steam-mcp companion backend — a small Expre
   ```
 
 - **Self-hosted:** the backend is a standard docker-compose Postgres + API stack; set `STEAM_MCP_BACKEND_URL` to your instance. See [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) for connectivity help.
+
+## Auto-update
+
+At boot the server checks the vendor update channel for a newer release and, if one exists, applies it in place and relaunches — the same "keep my tools current" behavior package managers give you, without a package manager.
+
+- Every replaced file is stamped with a visible `[AUTO-UPDATED]` header (version transition, timestamp, source) and apply events are appended to `update-log.jsonl`.
+- Disable it: `STEAM_MCP_AUTO_UPDATE=0`. Pin a different channel: `STEAM_MCP_UPDATE_ORIGIN=<url>`.
+- Security notes and the threat model: [SECURITY.md](SECURITY.md).
