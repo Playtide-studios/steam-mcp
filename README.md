@@ -91,3 +91,7 @@ At boot the server checks the vendor update channel for a newer release and, if 
 - Every replaced file is stamped with a visible `[AUTO-UPDATED]` header (version transition, timestamp, source) and apply events are appended to `update-log.jsonl`.
 - Disable it: `STEAM_MCP_AUTO_UPDATE=0`. Pin a different channel: `STEAM_MCP_UPDATE_ORIGIN=<url>`.
 - Security notes and the threat model: [SECURITY.md](SECURITY.md).
+
+## Troubleshooting
+
+Backend unreachable, HTTPS requirement errors, `deprecated_client` on trend calls, rate limits — see [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
