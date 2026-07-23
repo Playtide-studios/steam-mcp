@@ -95,3 +95,7 @@ At boot the server checks the vendor update channel for a newer release and, if 
 ## Troubleshooting
 
 Backend unreachable, HTTPS requirement errors, `deprecated_client` on trend calls, rate limits — see [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
+
+## Contributing
+
+Issues and PRs are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). Bug reports that include the failing tool call JSON get fixed first.
