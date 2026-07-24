@@ -99,3 +99,7 @@ Backend unreachable, HTTPS requirement errors, `deprecated_client` on trend call
 ## Contributing
 
 Issues and PRs are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). Bug reports that include the failing tool call JSON get fixed first.
+
+## License
+
+[MIT](LICENSE) © Playtide Studios. Steam is a trademark of Valve Corporation; this project is not affiliated with Valve.
