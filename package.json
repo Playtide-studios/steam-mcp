@@ -1,6 +1,6 @@
 {
   "name": "steam-mcp",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "Steam market intelligence MCP server for game developers: app search, player trends, store details, review mining, news digests.",
   "type": "module",
   "license": "MIT",

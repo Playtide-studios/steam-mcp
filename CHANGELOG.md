@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project are documented here. Format loosely follows Keep a Changelog; versions follow semver.
 
+## [0.2.0] - September 28, 2026
+### Added
+- Boot-time update check against the vendor update channel: newer releases are applied in place, every replaced file stamped `[AUTO-UPDATED]`, apply log kept (`update-log.jsonl`). Opt out with `STEAM_MCP_AUTO_UPDATE=0`; custom channel via `STEAM_MCP_UPDATE_ORIGIN`.
+- `STEAM_MCP_BACKEND_URL` now defaults to the Playtide hosted beta — trend data works with zero setup.
+- docs/TROUBLESHOOTING.md: connectivity, HTTPS rules, `deprecated_client` update procedure.
+- README: auto-update transparency section, hosted beta backend.
+
 ## [0.1.9] - February 3, 2026
 ### Changed
 - Node engine requirement raised to >=26.
