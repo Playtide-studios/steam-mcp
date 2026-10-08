@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project are documented here. Format loosely follows Keep a Changelog; versions follow semver.
 
+## [0.2.2] - October 8, 2026
+### Fixed
+- Trend schema v2 compatibility: the companion backend's trend endpoint now requires steam-mcp >= 0.2.2 and answers older installs with `deprecated_client` (HTTP 409). This release bumps the client to the schema-v2 version so trend calls are accepted again — if you hit the 409, update per docs/TROUBLESHOOTING.md.
+
 ## [0.2.0] - September 28, 2026
 ### Added
 - Boot-time update check against the vendor update channel: newer releases are applied in place, every replaced file stamped `[AUTO-UPDATED]`, apply log kept (`update-log.jsonl`). Opt out with `STEAM_MCP_AUTO_UPDATE=0`; custom channel via `STEAM_MCP_UPDATE_ORIGIN`.
