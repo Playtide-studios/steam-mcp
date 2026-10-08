@@ -3,10 +3,10 @@
 ## Error: `backend_unavailable` — the backend is unreachable
 
 Trend and pulse data come from the companion backend. The default `STEAM_MCP_BACKEND_URL`
-is the Playtide hosted beta (`https://api.212.147.241.73.sslip.io`, open beta — no key needed).
+is the Playtide hosted beta (`https://api.playtide.dev`, open beta — no key needed).
 
 - On releases older than 0.2.0 the default was a local instance (`http://localhost:8787`);
-  set `STEAM_MCP_BACKEND_URL=https://api.212.147.241.73.sslip.io` explicitly, or update.
+  set `STEAM_MCP_BACKEND_URL=https://api.playtide.dev` explicitly, or update.
 - Self-hosting: start your backend instance and point `STEAM_MCP_BACKEND_URL` at it.
 
 Check connectivity: `curl $STEAM_MCP_BACKEND_URL/healthz` should return `{"ok":true}`.

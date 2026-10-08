@@ -25,7 +25,7 @@ function validateBackendUrl(raw: string): string {
 
 export const config = {
   /** Content backend base URL. Defaults to the Playtide hosted beta; override to self-host. */
-  backendUrl: validateBackendUrl((env.STEAM_MCP_BACKEND_URL ?? 'https://api.212.147.241.73.sslip.io').replace(/\/+$/, '')),
+  backendUrl: validateBackendUrl((env.STEAM_MCP_BACKEND_URL ?? 'https://api.playtide.dev').replace(/\/+$/, '')),
 
   /** Optional backend API key for the hosted service. Not needed during the open beta. */
   backendKey: env.STEAM_MCP_BACKEND_KEY || undefined,
