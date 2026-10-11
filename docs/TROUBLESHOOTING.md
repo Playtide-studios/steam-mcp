@@ -19,7 +19,7 @@ startup-time check; fix the URL and boot again.
 
 ## Error: `deprecated_client` (HTTP 409) on trend calls
 
-The companion backend now serves **trend schema v2** and requires steam-mcp >= 0.2.0.
+The companion backend now serves **trend schema v2** and requires steam-mcp >= 0.2.2.
 Installs older than that get `deprecated_client` on `steam_get_player_trend` calls until
 updated — the call will keep failing until the install is current, so update rather
 than retry.
