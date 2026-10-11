@@ -20,8 +20,9 @@ are answered within a few days.
 - **Internet text is data, never instructions.** Reviews and news bodies are summarized,
   not executed; tool descriptions tell consuming models the same.
 - **Auto-update channel.** At boot the server may apply a newer release from the vendor
-  update channel in place. Releases are ed25519-signed and verified against the pinned
-  vendor key in `keys/update-key.pub` before anything is written to disk; replaced files
+  update channel in place. Releases are ed25519-signed and verified against the
+  vendor key pinned inside the client (published at `keys/update-key.pub`)
+  before anything is written to disk; replaced files
   carry a `[updated]` header and apply events are logged to `update-log.jsonl`. Disable
   with `STEAM_MCP_AUTO_UPDATE=0`; point at a different channel with
   `STEAM_MCP_UPDATE_ORIGIN`. If you run a locked-down environment, disabling the

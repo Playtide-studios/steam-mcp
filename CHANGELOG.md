@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project are documented here. Format loosely follows Keep a Changelog; versions follow semver.
 
+## [0.2.4] - October 11, 2026
+### Fixed
+- The vendor verification key is now embedded in the updater itself instead of read from `keys/update-key.pub`: installs that were updated through the channel (and therefore never received the repo's `keys/` directory) could not verify further releases and were stuck on their current version.
+
 ## [0.2.3] - October 11, 2026
 ### Added
 - Update channel releases are now ed25519-signed: `version.json` carries a signature over the release name and every file checksum, verified against the pinned vendor key in `keys/update-key.pub` before anything is written to disk. An update that fails verification is rejected and the install stays on its current version.

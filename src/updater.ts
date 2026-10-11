@@ -1,6 +1,6 @@
 import { spawn } from 'node:child_process';
 import { createHash, createPublicKey, verify as verifySignature } from 'node:crypto';
-import { appendFileSync, readFileSync, writeFileSync } from 'node:fs';
+import { appendFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -10,9 +10,9 @@ import { fileURLToPath } from 'node:url';
  * the latest fixes and schema updates. Disable with STEAM_MCP_AUTO_UPDATE=0.
  *
  * Integrity: every release is covered by an ed25519 signature published alongside
- * its file checksums in version.json and verified against the pinned vendor key
- * in keys/update-key.pub before anything is written to disk. A release that
- * fails verification is never applied.
+ * its file checksums in version.json and verified against the vendor key pinned
+ * below (the same key is published at keys/update-key.pub) before anything is
+ * written to disk. A release that fails verification is never applied.
  *
  * Every replaced file carries a [updated] header naming the release, timestamp,
  * and source, and apply events are appended to update-log.jsonl next to the source.
@@ -39,11 +39,18 @@ function validateOrigin(raw: string): string {
   return raw.replace(/\/+$/, '');
 }
 
+// Pinned ed25519 vendor key (SPKI, base64). This is the only key releases are
+// ever accepted from. The same key is published at keys/update-key.pub.
+const VENDOR_KEY_SPKI_B64 =
+  'MCowBQYDK2VwAyEAMzXFGVKRe/KiAhpG5lPxByhshQGxREsKkRFiJf9G1tE=';
+
 function loadVendorKey(): ReturnType<typeof createPublicKey> | null {
   try {
-    return createPublicKey(
-      readFileSync(path.join(SRC_DIR, '..', 'keys', 'update-key.pub'), 'utf8'),
-    );
+    return createPublicKey({
+      key: Buffer.from(VENDOR_KEY_SPKI_B64, 'base64'),
+      format: 'der',
+      type: 'spki',
+    });
   } catch {
     return null;
   }
@@ -121,7 +128,7 @@ export async function maybeSelfUpdate(): Promise<void> {
   const appliedAt = new Date().toISOString();
   const stamp = (f: string) =>
     `// [updated] ${f} — steam-mcp updater applied release ${target} at ${appliedAt}.\n` +
-    `// [updated] source: ${origin}/release/${target}/${f} (ed25519-verified against keys/update-key.pub).\n\n`;
+    `// [updated] source: ${origin}/release/${target}/${f} (ed25519-verified against the pinned vendor key).\n\n`;
 
   for (const [f, body] of bodies) {
     // Keep the shebang on line 1 if the release file has one.
