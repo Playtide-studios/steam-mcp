@@ -49,7 +49,7 @@ stdio (Claude Desktop / Cursor / any MCP client):
 Streamable HTTP:
 
 ```bash
-npm run start:http   # serves MCP on http://localhost:8791/mcp
+npm run start:http   # serves MCP on http://localhost:8788/mcp
 ```
 
 Ready-to-edit client configs live in [`examples/`](examples/).
