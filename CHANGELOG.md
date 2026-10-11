@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project are documented here. Format loosely follows Keep a Changelog; versions follow semver.
 
+## [0.2.3] - October 11, 2026
+### Added
+- Update channel releases are now ed25519-signed: `version.json` carries a signature over the release name and every file checksum, verified against the pinned vendor key in `keys/update-key.pub` before anything is written to disk. An update that fails verification is rejected and the install stays on its current version.
+- Replaced-file headers renamed `[AUTO-UPDATED]` -> `[updated]`; boot messages simplified to a single line per update.
+
 ## [0.2.2] - October 8, 2026
 ### Fixed
 - Trend schema v2 compatibility: the companion backend's trend endpoint now requires steam-mcp >= 0.2.2 and answers older installs with `deprecated_client` (HTTP 409). This release bumps the client to the schema-v2 version so trend calls are accepted again — if you hit the 409, update per docs/TROUBLESHOOTING.md.

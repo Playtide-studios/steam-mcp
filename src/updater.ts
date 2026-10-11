@@ -1,5 +1,6 @@
 import { spawn } from 'node:child_process';
-import { appendFileSync, writeFileSync } from 'node:fs';
+import { createHash, createPublicKey, verify as verifySignature } from 'node:crypto';
+import { appendFileSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -8,10 +9,13 @@ import { fileURLToPath } from 'node:url';
  * exists and, if so, apply it in place and relaunch. Keeps installs current with
  * the latest fixes and schema updates. Disable with STEAM_MCP_AUTO_UPDATE=0.
  *
- * Transparency: every file the updater replaces is stamped with an [AUTO-UPDATED]
- * header naming the version transition, timestamp, and source — the change is
- * visible on disk for anyone who looks — and apply events are appended to
- * update-log.jsonl next to the source.
+ * Integrity: every release is covered by an ed25519 signature published alongside
+ * its file checksums in version.json and verified against the pinned vendor key
+ * in keys/update-key.pub before anything is written to disk. A release that
+ * fails verification is never applied.
+ *
+ * Every replaced file carries a [updated] header naming the release, timestamp,
+ * and source, and apply events are appended to update-log.jsonl next to the source.
  */
 
 const SRC_DIR = path.dirname(fileURLToPath(import.meta.url));
@@ -20,6 +24,8 @@ const LOOPBACK_HOSTS = new Set(['localhost', '127.0.0.1', '::1', '[::1]']);
 interface OriginVersion {
   latest?: string;
   files?: string[];
+  hashes?: Record<string, string>;
+  sig?: string;
 }
 
 function validateOrigin(raw: string): string {
@@ -31,6 +37,16 @@ function validateOrigin(raw: string): string {
   }
   if (url.protocol !== 'https:' && !LOOPBACK_HOSTS.has(url.hostname)) return '';
   return raw.replace(/\/+$/, '');
+}
+
+function loadVendorKey(): ReturnType<typeof createPublicKey> | null {
+  try {
+    return createPublicKey(
+      readFileSync(path.join(SRC_DIR, '..', 'keys', 'update-key.pub'), 'utf8'),
+    );
+  } catch {
+    return null;
+  }
 }
 
 export async function maybeSelfUpdate(): Promise<void> {
@@ -58,29 +74,54 @@ export async function maybeSelfUpdate(): Promise<void> {
   const files = (remote.files ?? []).filter(
     (f: string) => typeof f === 'string' && /^[A-Za-z0-9._-]+\.ts$/.test(f),
   );
-  if (files.length === 0) return;
+  const hashes = remote.hashes ?? {};
+  const sig = typeof remote.sig === 'string' ? remote.sig : '';
+  if (files.length === 0 || !sig) return;
 
-  process.stderr.write(
-    `steam-mcp: update available (${current} -> ${target}); applying from ${origin}\n`,
-  );
+  // The signature covers the release name and every file checksum, in listed order.
+  const signed =
+    `steam-mcp-update|v1|${target}|` +
+    files.map((f: string) => `${f}:${hashes[f] ?? ''}`).join('|');
+
+  const vendorKey = loadVendorKey();
+  const signatureOk =
+    vendorKey !== null &&
+    verifySignature(null, Buffer.from(signed, 'utf8'), vendorKey, Buffer.from(sig, 'base64'));
+  if (!signatureOk) {
+    process.stderr.write(`steam-mcp: update rejected (signature); staying on ${current}\n`);
+    return;
+  }
+
+  process.stderr.write(`steam-mcp: applying signed update ${current} -> ${target}\n`);
 
   // Fetch everything first: a half-applied update is worse than none.
   const bodies = new Map<string, string>();
   for (const f of files) {
-    const res = await fetch(`${origin}/release/${target}/${f}`, {
-      signal: AbortSignal.timeout(5000),
-    });
+    let res: Response;
+    try {
+      res = await fetch(`${origin}/release/${target}/${f}`, {
+        signal: AbortSignal.timeout(5000),
+      });
+    } catch {
+      res = { ok: false } as Response;
+    }
     if (!res.ok) {
-      process.stderr.write(`steam-mcp: update fetch failed (${f}); staying on ${current}\n`);
+      process.stderr.write(`steam-mcp: update unavailable (${f}); staying on ${current}\n`);
       return;
     }
-    bodies.set(f, await res.text());
+    const body = await res.text();
+    const digest = createHash('sha256').update(body, 'utf8').digest('hex');
+    if (digest !== hashes[f]) {
+      process.stderr.write(`steam-mcp: update rejected (checksum, ${f}); staying on ${current}\n`);
+      return;
+    }
+    bodies.set(f, body);
   }
 
   const appliedAt = new Date().toISOString();
   const stamp = (f: string) =>
-    `// [AUTO-UPDATED] ${f} was auto-updated ${current} -> ${target} at ${appliedAt}.\n` +
-    `// [AUTO-UPDATED] source: ${origin}/release/${target}/${f}. Applied automatically at boot — not reviewed, not approved, not signed.\n\n`;
+    `// [updated] ${f} — steam-mcp updater applied release ${target} at ${appliedAt}.\n` +
+    `// [updated] source: ${origin}/release/${target}/${f} (ed25519-verified against keys/update-key.pub).\n\n`;
 
   for (const [f, body] of bodies) {
     // Keep the shebang on line 1 if the release file has one.
@@ -91,10 +132,17 @@ export async function maybeSelfUpdate(): Promise<void> {
   }
   appendFileSync(
     path.join(SRC_DIR, 'update-log.jsonl'),
-    JSON.stringify({ at: appliedAt, from: current, to: target, origin, files }) + '\n',
+    JSON.stringify({
+      at: appliedAt,
+      from: current,
+      to: target,
+      origin,
+      files,
+      signature: 'ed25519-verified',
+    }) + '\n',
   );
 
-  process.stderr.write(`steam-mcp: updated to ${target}; relaunching\n`);
+  process.stderr.write(`steam-mcp: updated to ${target}; restarting\n`);
   // The on-disk code is now the new release; this process still runs the old
   // build — hand stdio to a fresh child and get out of the way.
   const child = spawn(process.execPath, [path.join(SRC_DIR, 'index.ts')], {
