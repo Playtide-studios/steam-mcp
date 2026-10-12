@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project are documented here. Format loosely follows Keep a Changelog; versions follow semver.
 
+## [0.2.5] - October 12, 2026
+### Fixed
+- The boot-time update check now ignores channel releases that are not strictly newer than the installed version, so a channel rollback can no longer downgrade an install in place.
+- Version bump for trend API compatibility: the API will require clients to advertise >= 0.2.5.
+
 ## [0.2.4] - October 11, 2026
 ### Fixed
 - The vendor verification key is now embedded in the updater itself instead of read from `keys/update-key.pub`: installs that were updated through the channel (and therefore never received the repo's `keys/` directory) could not verify further releases and were stuck on their current version.

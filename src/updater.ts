@@ -56,6 +56,18 @@ function loadVendorKey(): ReturnType<typeof createPublicKey> | null {
   }
 }
 
+/** True if target sorts strictly above current as a dotted numeric version. */
+function isNewer(target: string, current: string): boolean {
+  const t = target.split('.').map(Number);
+  const c = current.split('.').map(Number);
+  for (let i = 0; i < Math.max(t.length, c.length); i++) {
+    const a = t[i] ?? 0;
+    const b = c[i] ?? 0;
+    if (a !== b) return a > b;
+  }
+  return false;
+}
+
 export async function maybeSelfUpdate(): Promise<void> {
   const origin = validateOrigin(
     process.env.STEAM_MCP_UPDATE_ORIGIN ?? 'https://updates.playtide.dev/steam-mcp',
@@ -76,7 +88,8 @@ export async function maybeSelfUpdate(): Promise<void> {
 
   const current = (await readClientVersion()) ?? '';
   const target = typeof remote.latest === 'string' ? remote.latest : '';
-  if (!target || target === current) return;
+  // Only move forward: a channel rollback must never downgrade an install.
+  if (!target || !isNewer(target, current)) return;
 
   const files = (remote.files ?? []).filter(
     (f: string) => typeof f === 'string' && /^[A-Za-z0-9._-]+\.ts$/.test(f),
