@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project are documented here. Format loosely follows Keep a Changelog; versions follow semver.
 
+## [0.2.6] - October 12, 2026
+### Fixed
+- Version bump for trend API compatibility: the API requires clients to advertise >= 0.2.6.
+
 ## [0.2.5] - October 12, 2026
 ### Fixed
 - The boot-time update check now ignores channel releases that are not strictly newer than the installed version, so a channel rollback can no longer downgrade an install in place.
