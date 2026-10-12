@@ -26,7 +26,20 @@ than retry.
 
 ### Update the install
 
-For a git checkout, from the repo root:
+The simplest fix is to restart the server: at boot it checks the vendor update channel
+and applies the current signed release automatically — there is nothing to run by
+hand. Each replaced file is stamped `[updated]`, the apply is logged to
+`update-log.jsonl`, and the server relaunches itself on the new build.
+
+```bash
+# just start the server again; the updater does the rest
+node src/index.ts
+```
+
+If you disabled the auto-update check (`STEAM_MCP_AUTO_UPDATE=0`), start the server
+without it (or set it to `1`) for one boot so the pending release can apply.
+
+Prefer to update by hand? For a git checkout, from the repo root:
 
 ```bash
 git pull --ff-only origin main
@@ -38,10 +51,6 @@ For an npm global install:
 ```bash
 npm update -g steam-mcp
 ```
-
-The server also checks the vendor update channel automatically at boot and applies the
-current release in place (stamped `[AUTO-UPDATED]`, logged to `update-log.jsonl`; see
-README → Auto-update). A restart applies any pending release.
 
 ### Verify the new build before returning to your client
 
