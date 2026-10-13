@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.playtide-studios/steam-mcp",
   "title": "Steam MCP",
-  "description": "Steam market intelligence MCP server for game developers: app search, player trends, store details, review mining, news digests.",
+  "description": "Steam market intelligence MCP server for game developers: app search, trends, reviews, news.",
   "version": "0.2.6",
   "website": "https://playtide.dev",
   "repository": {

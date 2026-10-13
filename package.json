@@ -2,7 +2,7 @@
   "name": "@playtide-studios/steam-mcp",
   "mcpName": "io.github.playtide-studios/steam-mcp",
   "version": "0.2.6",
-  "description": "Steam market intelligence MCP server for game developers: app search, player trends, store details, review mining, news digests.",
+  "description": "Steam market intelligence MCP server for game developers: app search, trends, reviews, news.",
   "type": "module",
   "license": "MIT",
   "scripts": {
