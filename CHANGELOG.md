@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project are documented here. Format loosely follows Keep a Changelog; versions follow semver.
 
+## [0.2.7] - October 13, 2026
+### Fixed
+- Packaging: corrected the registry ownership marker in the README.
+
 ## [0.2.6] - October 12, 2026
 ### Fixed
 - Version bump for trend API compatibility: the API requires clients to advertise >= 0.2.6.

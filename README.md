@@ -104,4 +104,4 @@ Issues and PRs are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). Bug repor
 
 [MIT](LICENSE) © Playtide Studios. Steam is a trademark of Valve Corporation; this project is not affiliated with Valve.
 
-<!-- mcp-name: io.github.playtide-studios/steam-mcp -->
+<!-- mcp-name: io.github.Playtide-studios/steam-mcp -->
