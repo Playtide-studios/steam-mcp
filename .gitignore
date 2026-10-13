@@ -5,3 +5,7 @@ node_modules/
 dist/
 coverage/
 update-log.jsonl
+dist/
+build/
+*.egg-info/
+python/steam_mcp/node/

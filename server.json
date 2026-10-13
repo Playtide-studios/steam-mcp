@@ -11,8 +11,8 @@
   },
   "packages": [
     {
-      "registryType": "npm",
-      "identifier": "@playtide-studios/steam-mcp",
+      "registryType": "pypi",
+      "identifier": "playtide-steam-mcp",
       "version": "0.2.6",
       "transport": {
         "type": "stdio"

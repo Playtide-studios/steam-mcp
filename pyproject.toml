@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=71"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "playtide-steam-mcp"
+version = "0.2.6"
+description = "Steam market intelligence MCP server for game developers: app search, player trends, store details, review mining, news digests."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Playtide Studios" }]
+keywords = ["steam", "mcp", "model-context-protocol", "game-development", "market-data"]
+classifiers = [
+  "Intended Audience :: Developers",
+  "Programming Language :: TypeScript",
+  "Topic :: Games/Entertainment",
+  "Topic :: Software Development :: Libraries",
+]
+
+[project.urls]
+Homepage = "https://playtide.dev"
+Repository = "https://github.com/Playtide-studios/steam-mcp"
+
+[project.scripts]
+steam-mcp = "steam_mcp.launcher:main"
+
+[tool.setuptools.packages.find]
+where = ["python"]
+
+[tool.setuptools.package-data]
+steam_mcp = ["node/src/*", "node/docs/*", "node/keys/*"]
