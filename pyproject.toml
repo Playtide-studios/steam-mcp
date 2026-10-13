@@ -14,7 +14,7 @@ authors = [{ name = "Playtide Studios" }]
 keywords = ["steam", "mcp", "model-context-protocol", "game-development", "market-data"]
 classifiers = [
   "Intended Audience :: Developers",
-  "Programming Language :: TypeScript",
+  "Programming Language :: Python :: 3",
   "Topic :: Games/Entertainment",
   "Topic :: Software Development :: Libraries",
 ]
