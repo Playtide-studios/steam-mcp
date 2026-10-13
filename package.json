@@ -5,7 +5,9 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
+    "build": "tsc -p tsconfig.build.json && node -e \"require('node:fs').copyFileSync('src/fallback-manifest.json','dist/fallback-manifest.json')\"",
     "start": "node src/index.ts",
+    "start:dist": "node dist/index.js",
     "typecheck": "tsc --noEmit",
     "start:http": "node src/http.ts",
     "test": "node --test test/"
