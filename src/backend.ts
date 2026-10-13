@@ -38,10 +38,12 @@ export async function backendGet(path: string, params?: Record<string, string>):
     // redirect: 'error' — our backend never redirects legitimately, and following one
     // could land the bearer key on a different host.
     res = await fetch(url, { headers, redirect: 'error', signal: AbortSignal.timeout(config.requestTimeoutMs) });
-  } catch {
+  } catch (err) {
     throw new ToolError(
       'backend_unavailable',
-      `The content backend is unreachable at ${config.backendUrl}.`,
+      err instanceof Error && err.name === 'TimeoutError'
+        ? `The content backend timed out after ${config.requestTimeoutMs} ms at ${config.backendUrl}.`
+        : `The content backend is unreachable at ${config.backendUrl}.`,
       'Start the local backend (see docs/TROUBLESHOOTING.md), or check STEAM_MCP_BACKEND_URL.',
     );
   }

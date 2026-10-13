@@ -11,8 +11,8 @@ Steam's public APIs are fragmented (store search, appdetails, user stats) and no
 ## Install
 
 ```bash
-# from npm
-npm install -g @playtide-studios/steam-mcp
+# from PyPI
+pip install playtide-steam-mcp
 steam-mcp
 ```
 

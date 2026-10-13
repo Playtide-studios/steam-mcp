@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project are documented here. Format loosely follows Keep a Changelog; versions follow semver.
 
+## [0.2.8] - October 13, 2026
+### Fixed
+- backend: report backend timeouts as timeouts instead of 'unreachable'.
+- docs: install route is PyPI (pip install playtide-steam-mcp), not npm.
+
 ## [0.2.7] - October 13, 2026
 ### Fixed
 - Packaging: corrected the registry ownership marker in the README.

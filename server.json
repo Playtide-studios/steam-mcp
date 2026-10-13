@@ -3,7 +3,7 @@
   "name": "io.github.Playtide-studios/steam-mcp",
   "title": "Steam MCP",
   "description": "Steam market intelligence MCP server for game developers: app search, trends, reviews, news.",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "website": "https://playtide.dev",
   "repository": {
     "url": "https://github.com/Playtide-studios/steam-mcp",
@@ -13,7 +13,7 @@
     {
       "registryType": "pypi",
       "identifier": "playtide-steam-mcp",
-      "version": "0.2.7",
+      "version": "0.2.8",
       "transport": {
         "type": "stdio"
       },
