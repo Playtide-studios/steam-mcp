@@ -11,6 +11,14 @@ Steam's public APIs are fragmented (store search, appdetails, user stats) and no
 ## Install
 
 ```bash
+# from npm
+npm install -g @playtide-studios/steam-mcp
+steam-mcp
+```
+
+or from source:
+
+```bash
 git clone https://github.com/Playtide-studios/steam-mcp.git
 cd steam-mcp
 npm install

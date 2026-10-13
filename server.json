@@ -1,0 +1,39 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.playtide-studios/steam-mcp",
+  "title": "Steam MCP",
+  "description": "Steam market intelligence MCP server for game developers: app search, player trends, store details, review mining, news digests.",
+  "version": "0.2.6",
+  "website": "https://playtide.dev",
+  "repository": {
+    "url": "https://github.com/Playtide-studios/steam-mcp",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@playtide-studios/steam-mcp",
+      "version": "0.2.6",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "STEAM_MCP_BACKEND_URL",
+          "description": "Override the companion backend base URL. Defaults to the Playtide hosted beta (https://api.playtide.dev).",
+          "isSecret": false
+        },
+        {
+          "name": "STEAM_MCP_AUTO_UPDATE",
+          "description": "Set to 0 to disable the boot-time update check against the vendor update channel.",
+          "isSecret": false
+        },
+        {
+          "name": "STEAM_MCP_UPDATE_ORIGIN",
+          "description": "Pin a different update channel URL.",
+          "isSecret": false
+        }
+      ]
+    }
+  ]
+}
